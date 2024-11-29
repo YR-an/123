@@ -17,7 +17,7 @@
 - Email：~
 ## 问题报告
 如果你在使用过程中遇到任何问题，欢迎在 GitHub Issues 中报告：  
-[GitHub Issues](https://github.com/)
+[GitHub Issues](https://)
 ## 常见问题
 - **123121**
 1.
