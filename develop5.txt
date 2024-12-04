@@ -1,0 +1,53 @@
+练习题
+1.	创建表结构和插入数据
+	表1：employees（员工表）
+CREATE TABLE employees (
+    employee_id INT PRIMARY KEY,
+    first_name VARCHAR(50),
+    last_name VARCHAR(50),
+    department_id INT,
+    salary DECIMAL(10, 2),
+    hire_date DATE
+);
+
+-- 插入数据
+INSERT INTO employees (employee_id, first_name, last_name, department_id, salary, hire_date)
+VALUES
+(1, 'John', 'Doe', 1, 5000.00, '2019-06-15'),
+(2, 'Jane', 'Smith', 2, 6000.00, '2018-08-22'),
+(3, 'Alice', 'Johnson', 1, 7000.00, '2020-02-14'),
+(4, 'Bob', 'Brown', 3, 4500.00, '2017-09-09'),
+(5, 'Charlie', 'Davis', 2, 8000.00, '2021-01-10'),
+(6, 'David', 'Miller', 1, 5500.00, '2019-03-01'),
+(7, 'Eve', 'Wilson', 3, 4000.00, '2020-11-20'),
+(8, 'Frank', 'Moore', 2, 7500.00, '2021-04-15'),
+(9, 'Grace', 'Taylor', 3, 5200.00, '2018-12-05'),
+(10, 'Hannah', 'Anderson', 1, 6200.00, '2017-06-11');
+	表2：departments（部门表）
+CREATE TABLE departments (
+    department_id INT PRIMARY KEY,
+    department_name VARCHAR(100)
+);
+
+-- 插入数据
+INSERT INTO departments (department_id, department_name)
+VALUES
+(1, 'Sales'),
+(2, 'Marketing'),
+(3, 'IT');
+2.	查询所有在“Sales”部门工作的员工信息。
+3.	查询所有不在“IT”部门工作的员工信息。
+4.	查询薪资高于所有“IT”部门员工的平均薪资的员工信息。
+5.	查询薪资高于公司所有员工的平均薪资的员工信息。
+6.	查询“Sales”部门中薪资最高的员工信息。
+7.	查询“Sales”部门所有员工的名字和薪资，薪资高于公司平均薪资的员工。
+8.	查询薪资高于“Bob Brown”薪资的所有员工。
+9.	查询“Sales”部门中薪资低于“IT”部门薪资最高员工的所有员工。
+10.	查询所有加入公司日期早于“IT”部门员工最晚加入日期的员工信息。
+11.	查询“IT”部门中，加入公司的日期最早的员工信息。
+12.	查询“IT”部门中薪资最高的员工的名字和薪资。
+13.	查询所有部门中薪资高于部门平均薪资且加入日期晚于部门最早加入员工的员工信息。
+14.	查询“Sales”部门和“IT”部门中薪资大于5000的所有员工信息。
+15.	查询每个部门的平均薪资，并显示薪资高于公司所有部门平均薪资的部门信息。要求结果按平均薪资从高到低排序。
+16.	查询所有部门中，员工数量超过3人的部门名称和员工数量。
+

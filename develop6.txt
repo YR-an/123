@@ -1,0 +1,124 @@
+### 一、基础操作题
+
+1. **连接 Redis：**
+   - 使用 `redis-cli` 连接本地 Redis 实例，并验证 Redis 是否正常运行。
+
+2. **字符串操作：**
+   - 在 Redis 中设置一个键值对 `name = "Alice"`，然后获取这个键的值。
+
+3. **设置过期时间：**
+   - 设置一个键 `session` 为 `"active"`，并为其设置一个过期时间（例如 60 秒）。
+
+4. **删除键：**
+   - 删除你在第二题中设置的 `name` 键。
+
+5. **批量操作：**
+   - 使用 `MSET` 和 `MGET` 同时设置并获取多个键值对。
+
+### 二、数据结构题
+
+1. **列表（List）操作：**
+   - 创建一个名为 `fruits` 的列表，往列表左侧添加 `"apple"` 和 `"banana"` 两个元素，往右侧添加 `"orange"`。
+   - 获取 `fruits` 列表的所有元素。
+
+2. **集合（Set）操作：**
+   - 创建一个名为 `colors` 的集合，并添加 `"red"`、`"green"`、`"blue"`。
+   - 获取集合 `colors` 中的所有元素。
+   - 向 `colors` 集合中添加 `"yellow"` 元素。
+
+3. **哈希表（Hash）操作：**
+   - 创建一个哈希表 `user:1`，并设置字段 `name` 为 `"Alice"`，`age` 为 `25`，`email` 为 `"alice@example.com"`。
+   - 获取哈希表 `user:1` 中的 `name` 和 `email` 字段。
+
+4. **有序集合（Sorted Set）操作：**
+   - 创建一个有序集合 `leaderboard`，并添加两个成员 `"Alice"`，分数为 100，`"Bob"`，分数为 200。
+   - 获取 `leaderboard` 中所有成员按分数排序的结果。
+
+### 三、进阶操作题
+
+1. **事务操作：**
+   - 使用 Redis 事务（`MULTI` 和 `EXEC`）执行以下操作：
+     - 增加一个键 `count` 的值，初始值为 10。
+     - 使用事务将 `count` 加 5。
+     - 提交事务并检查 `count` 的值。
+
+2. **发布/订阅（Pub/Sub）操作：**
+   - 在 Redis 中创建一个频道 `news`。
+   - 使用 `SUBSCRIBE` 订阅该频道并等待消息。
+   - 使用 `PUBLISH` 向 `news` 频道发布一条消息 `"Hello Redis!"`。
+
+3. **持久化操作：**
+   - 使用 RDB 持久化方式将 Redis 数据保存到磁盘，并且查看数据文件的位置。
+   - 配置 AOF 持久化策略，并重新启动 Redis。
+
+4. **主从复制：**
+   - 配置 Redis 主从复制，设置一个主 Redis 实例和一个从 Redis 实例。
+   - 向主实例写入数据，并验证从实例的数据是否同步。
+
+5. **集群操作：**
+   - 配置一个简单的 Redis 集群，并添加多个节点。
+   - 使用 Redis 集群命令进行数据的分片、插入和获取。
+
+### 四、实战题
+
+1. **创建一个简单的会话管理系统：**
+   - 使用 Redis 存储用户的会话信息。每个用户的会话可以包括：用户名、登录时间、IP 地址。使用 `HASH` 类型来存储每个用户的会话信息。
+   - 提供命令来创建、更新、删除和查询会话。
+
+2. **实现一个简单的排行榜：**
+   - 使用 Redis 的 `ZSET`（有序集合）类型来实现一个用户排行榜，用户按分数（例如游戏分数）进行排序。
+   - 实现查询排名、获取前 N 名用户、增加/减少分数等功能。
+
+### 五、挑战题
+
+1. **消息队列：**
+   - 使用 Redis 的列表数据结构实现一个简单的消息队列，生产者和消费者的模型。生产者将消息添加到队列中，消费者从队列中取出消息进行处理。
+
+2. **缓存穿透：**
+   - 设计并实现一个简单的缓存系统。首先使用 Redis 缓存数据库查询结果，当缓存失效时从数据库重新获取数据，并将数据更新到缓存中。
+
+### 六、答案提交
+
+完成后你可以提交你的答案，我们可以一起对比并讨论一些细节问题，帮助你巩固 Redis 的知识。如果有任何不理解的地方，也可以随时提问！
+1、redis-server
+redis-cli
+2、set name Alice
+3、set session active
+expire session 60
+4、del name
+5、mset acc 199 qrr 866 ioo 977
+mget acc prr ioo
+6、LPUSH fruits apple banana 
+RPUSH fruits orange
+LRANGE fruits 0 -1
+7、SADD colors red green blue
+SMEMBERS colors
+SADD colors yellow
+8、HSET user:1 name Alice age 25 email Alice@example.com
+HGET user:1 name email
+9、ZADD leaderboard Alice 100 Bob 200
+ZRANGE leaderboard WITHSCORES
+10、MULTI
+set count 10
+INCRBY count 5
+EXEC
+11、SUBSCRIBE news
+PUBLISH news "Hello Redis"
+12、 save
+13、role
+14、redis-sentinel sentinel.conf
+15、HSET session:user123 username "Alice" login_time "2024-12-01T08:00:00" ip "192.168.0.1"
+HGETALL session:user123
+HSET session:user123 ip "192.168.0.2"
+HDEL session:user123 ip
+16、ZSET game qwe 110 zxc 122 qdi 390 zcl 130
+ZRANK game qwe
+ZREVRANGE leaderboard 0 2 WITHSCORES  # 获取前 3 名及其分数
+ZINCRBY leaderboard 50 "Alice"  # Alice 的分数增加 50
+17、LPUSH message_queue "message 1"
+LPUSH message_queue "message 2"
+BRPOP message_queue 0  # 阻塞直到有消息
+18、GET user:123  # 查询缓存中的用户数据
+GET user:123
+# 如果没有缓存，查询数据库
+SET user:123 '{"name": "Alice", "age": 25}'
