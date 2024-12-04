@@ -1,0 +1,24 @@
+git init
+echo 1 > README.md
+git add .
+git commit -m "1"
+git log
+git checkout -b feature-xyz
+echo 1 > demo.txt
+git add .
+git commit -m "1"
+git switch main
+git merge feature-xyz
+git branch -d feature-xyz
+git push origin --delete feature-xyz
+git status
+git fetch
+git status
+git push origin main
+git tag -a v1.0
+git push origin v1.0
+git log -- README.md
+git checkout HEAD --test.txt
+git restore --status file.txt
+git diff main feature-xyz
+git pull origin main

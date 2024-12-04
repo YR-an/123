@@ -1,0 +1,45 @@
+create database test_db
+character set utf8mb4;
+use test_db;
+create table employees(
+    id int primary key AUTO_INCREMENT,
+    name varchar(50),
+    age int,
+    position varchar(50)
+);
+insert into employees(name,age,position) values
+('Alice',30,'Engineer'),
+('Bob',25,'Designer'),
+('Charlie',28,'Develop');
+select * from employees where age > 26;
+update employees
+set position = 'Senior Develop'
+where name = 'Charlie';
+delete from employees where name = 'Bob';
+alter table employees
+add email varchar(100);
+alter table employees add constraint unique_email unique(email);
+create index index_position
+on employees(position);
+select position,COUNT(*) from employees
+group by position;
+create table departments(
+    departments_id int primary key,
+    departments_name varchar(50)
+);
+SELECT employees.name, departments.department_name
+FROM employees
+JOIN departments ON employees.department_id = departments.department_id;
+begin;
+update employees
+set age = 30
+where name = 'Alice' and name = 'Charlie';
+rollback;
+DELIMITER $$
+
+CREATE PROCEDURE get_employees_by_age(IN min_age INT)
+BEGIN
+  SELECT * FROM employees WHERE age >= min_age;
+END$$
+
+DELIMITER ;
